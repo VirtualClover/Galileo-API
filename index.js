@@ -25,7 +25,7 @@ async function getColorlist() {
   const auth = await google.auth.getClient({
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
-  const list = [];
+  const list = {};
   const api = google.sheets({version: 'v4', auth});
   const response = await api.spreadsheets.values.get({
     spreadsheetId: '14KUqHfspC2mD_aH5EhCxUFY_nSqvjwLmd2EvMBlgVAA',
@@ -33,14 +33,17 @@ async function getColorlist() {
   });
   for (const row of response.data.values) {
     if (row[0] !== 'Color') {
-      list.push({
-        color: row[0],
-        shade: row[1],
+      const color = row[0].toLowerCase();
+      const shade = {
         hex: row[2],
         rgb: row[3],
         hsl: row[4],
         recommended_foreground: row[5],
-      });
+      };
+      if (!list[color]) {
+        list[color] = {};
+      }
+      list[color][row[1]] = shade;
     }
   }
   return list;
