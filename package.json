@@ -1,5 +1,5 @@
 {
-  "name": "galileo-styleguide-api",
+  "name": "galileo-core-services",
   "version": "1.0.0",
   "description": "An api that delivers styleguides",
   "main": "index.js",
