@@ -3,8 +3,8 @@ const express = require('express');
 const app = express();
 
 const SPREAD_DATA = {
-  id: '14KUqHfspC2mD_aH5EhCxUFY_nSqvjwLmd2EvMBlgVAA',
-  url: 'https://www.googleapis.com/auth/spreadsheets',
+  id: process.env.FOUNDATIONS_SHEET_ID,
+  url: process.env.FOUNDATIONS_SHEET_URL,
 };
 
 const port = process.env.PORT || 8080;
